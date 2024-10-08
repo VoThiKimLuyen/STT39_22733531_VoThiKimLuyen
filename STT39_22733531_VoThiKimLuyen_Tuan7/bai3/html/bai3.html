@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
+    <script src="../Bootstrap/js/jquery-3.6.0.min.js"></script>
+    <script src="../Bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        .container
+        {
+            width: 50%;
+            background-color: rgb(208, 255, 239);
+        }
+        table
+        {
+
+             border-collapse: collapse; /* Đảm bảo các đường viền nối với nhau */
+        }
+    
+        tr
+        {
+            border-bottom: 2px solid rgb(12, 150, 53);
+            border-left: 2px solid rgb(12, 150, 53);
+            border-right: 2px solid rgb(12, 150, 53);
+
+        }
+        p
+        {
+            color: blue;
+        }
+        
+    </style>
+    <script>
+        $(document).ready(function() {
+
+            function ktrarong(giatri, text) {
+                var regex = giatri.trim();
+                if (regex == "") {
+                    text.innerHTML="Không được để trống";
+                    return false;
+                } else {
+                    text.innerHTML="";
+                    return true;
+                }
+            }
+            //ten đăng nhập ít 6 kí tự
+            function ktratendg(giatri,text)
+            {
+                let regex=/^[0-9a-zA-Z'_!@#$%]{6,}$/;
+                if(!regex.test(giatri))
+                {
+                    text.innerHTML="Tên ít nhất 6 kí tự";
+                    return false;
+                }
+                else
+                {
+                    text.innerHTML="";
+                    return true;
+                }
+            }
+            //diem thoai là số
+            function ktradthoai(giatri,text)
+            {
+                let regex=/^(0([2-9]{1})(\d{8}))$/;
+                if(!regex.test(giatri))
+                {
+                    text.innerHTML="Điện thoại dạng 0[2-9]X{8}";
+                    return false;
+                }
+                else
+                {
+                    text.innerHTML="";
+                    return true;
+                }
+            }
+            //eamil
+            function ktraemail(giatri,text)
+            {
+                let regex=/^([A-Za-z0-9]+)@(gmail|yahoo).com$/;
+                if(!regex.test(giatri))
+                {
+                    text.innerHTML="Sai dạng email X@gmail|yahoo.com";
+                    return false;
+                }
+                else
+                {
+                    text.innerHTML="";
+                    return true;
+                }
+            }
+            // họ tên k đc để trống
+            $("#hoten").blur(function(e) {
+                let valhoten = $("#hoten").val();
+                ktrarong(valhoten, text1);
+            });  
+            //tên đăng nhập
+            $("#taikhoan").blur(function(e) {
+                let valtk = $("#taikhoan").val();
+                if(!ktrarong(valtk, text2))
+                {
+                    return;
+                }
+                ktratendg(valtk, text2);               
+                
+            }); 
+            //mk
+            $("#mk").blur(function(e) {
+                let valmk = $("#mk").val();
+                ktrarong(valmk, text3);
+            });
+            $("#xnmk").blur(function(e) {
+                let valsnmk = $("#xnmk").val();
+                ktrarong(valsnmk, text4);
+            });
+            //điện thoại
+            $("#dthoai").blur(function(e) {
+                let valdt = $("#dthoai").val();
+                ktradthoai(valdt, text6);                               
+            }); 
+            //email
+            $("#email").blur(function(e) {
+                let valem = $("#email").val();
+                ktraemail(valem, text7);                               
+            });
+
+            //
+            $("#submit").click(function()
+            {
+                let valhoten = $("#hoten").val();
+                ktrarong(valhoten, text1);
+                let valtk = $("#taikhoan").val();
+                ktrarong(valtk, text2);ktratendg(valtk, text2);
+                let valmk = $("#mk").val();
+                ktrarong(valmk, text3);
+                let valsnmk = $("#xnmk").val();
+                ktrarong(valsnmk, text4);
+                let valdt = $("#dthoai").val();
+                ktradthoai(valdt, text6);
+                let valem = $("#email").val();
+                ktraemail(valem, text7);
+            });
+            function option(giatri,x,n)
+            {
+                for (var i = x; i <= n; i++) {
+                var option = '<option value="' + i + '">' + i + '</option>';
+                $(giatri).append(option);
+            }
+            }
+            var date = new Date();
+            var nam = date.getFullYear();
+            var YearNumber = Number(nam);
+            option("#ngaysinh",1,31);
+            option("#thangsinh",1,12);
+            option("#namsinh",1940,YearNumber);           
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <p style="text-align: center;padding-top: 5px;">Register Form</p>
+        <table class="table table-bordered ">
+<!-- họ và tên -->
+            <tr class="row m-0 p-0" style="border-top:2px solid rgb(12, 150, 53) ;">
+                <td class="col-4 p-0 m-0" style="border-right: 2px solid rgb(12, 150, 53);">
+                    <p style="text-align: right;padding-top: 10px;padding-right: 3px;">Họ và tên(*):</p>
+                </td>
+                <td class="col-8 p-0 m-0">
+                    <input type="text" id="hoten" style="width: 60%;margin-top: 10px;margin-left: 3px;">
+                    <span id="text1" class="text-danger"></span>
+                </td>
+            </tr>
+<!-- tên đăng nhập -->
+            <tr class="row m-0 p-0">
+                <td class="col-4 p-0 m-0" style="border-right: 2px solid rgb(12, 150, 53);">
+                    <p style="text-align: right;padding-top: 10px;padding-right: 3px;">Tên đăng nhập(*):</p>
+                </td>
+                <td class="col-8 p-0 m-0">
+                    <input id="taikhoan" type="text" style="width: 60%;margin-top: 10px;margin-left: 3px;">
+                    <span id="text2" class="text-danger"></span>
+                </td>
+            </tr>
+<!--mật khẩu  -->
+            <tr class="row m-0 p-0">
+                <td class="col-4 p-0 m-0" style="border-right: 2px solid rgb(12, 150, 53);">
+                    <p style="text-align: right;padding-top: 10px;padding-right: 3px;">Mật khẩu(*):</p>
+                </td>
+                <td class="col-8 p-0 m-0">
+                    <input type="text" id="mk" style="width: 60%;margin-top: 10px;margin-left: 3px;">
+                    <span id="text3" class="text-danger"></span>
+                </td>
+            </tr>
+<!-- Xác nhận mật khẩu -->
+            <tr class="row m-0 p-0">
+                <td class="col-4 p-0 m-0" style="border-right: 2px solid rgb(12, 150, 53);">
+                    <p style="text-align: right;padding-top: 10px;padding-right: 3px;">Xác nhận mật khẩu(*):</p>
+                </td>
+                <td class="col-8 p-0 m-0">
+                    <input type="text" id="xnmk" style="width: 60%;margin-top: 10px;margin-left: 3px;">
+                    <span id="text4" class="text-danger"></span>
+                </td>
+            </tr>
+<!-- Ngày sinh -->
+            <tr class="row m-0 p-0">
+                <td class="col-4 p-0 m-0" style="border-right: 2px solid rgb(12, 150, 53);">
+                    <p style="text-align: right;padding-top: 10px;padding-right: 3px;">Ngày sinh:</p>
+                </td>
+                <td class="col-8 p-0 m-0">
+                    
+                    <select name="ngaysinh" id="ngaysinh" style="margin-top:10px ;">
+                        <!-- <option value="1">1</option> -->
+                    </select>
+                    <label for="thang">Tháng</label>
+                    <select name="thangsinh" id="thangsinh">
+                        <!-- <option value="1">1</option> -->
+                    </select>
+                    <label for="nam">Năm</label>
+                    <select name="namsinh" id="namsinh">
+                        <!-- <option value="1940">1940</option> -->
+                    </select>
+                </td>
+            </tr>
+<!-- Điện thoại -->
+            <tr class="row m-0 p-0">
+                <td class="col-4 p-0 m-0" style="border-right: 2px solid rgb(12, 150, 53);">
+                    <p style="text-align: right;padding-top: 10px;padding-right: 3px;">Điện thoại:</p>
+                </td>
+                <td class="col-8 p-0 m-0">
+                    <input type="text" id="dthoai" style="width: 60%;margin-top: 10px;margin-left: 3px;">
+                    <span id="text6" class="text-danger"></span>
+                </td>
+            </tr>
+<!-- Địa chỉ -->
+            <tr class="row m-0 p-0">
+                <td class="col-4 p-0 m-0" style="border-right: 2px solid rgb(12, 150, 53);">
+                    <p style="text-align: right;padding-top: 10px;padding-right: 3px;">Địa chỉ:</p>
+                </td>
+                <td class="col-8 p-0 m-0">
+                    <p><input type="text" style="width: 60%;margin-top: 10px;margin-left: 3px;"></p>
+                </td>
+            </tr>
+<!-- Email -->
+            <tr class="row m-0 p-0">
+                <td class="col-4 p-0 m-0" style="border-right: 2px solid rgb(12, 150, 53);">
+                    <p style="text-align: right;padding-top: 10px;padding-right: 3px;">Email khác:</p>
+                </td>
+                <td class="col-8 p-0 m-0">
+                    <input type="text" id="email" style="width: 60%;margin-top: 10px;margin-left: 3px;">
+                    <span id="text7" class="text-danger"></span>
+                </td>
+            </tr>
+<!-- Sở thicsh -->
+            <tr class="row m-0 p-0">
+                <td class="col-4 p-0 m-0" style="border-right: 2px solid rgb(12, 150, 53);">
+                    <p style="text-align: right;padding-top: 10px;padding-right: 3px;">Sở thích:</p>
+                </td>
+                <td class="col-8 p-0 m-0">
+                    <select name="sothich" id="sothich" style="margin-top:10px ;">
+                        <option value="Ca nhạc">Ca nhạc</option>
+                        <option value="Du lịch">Du lịch</option>
+                        <option value="Thể thao">Ngủ</option>
+                        <option value="Đọc sách">Học</option>
+                </td>
+            </tr>
+<!--  -->
+            <tr class="row m-0 p-0">
+                <td class="col-4 p-0 m-0" style="border-right: 2px solid rgb(12, 150, 53);">
+                    <p style="text-align: right;padding-top: 10px;padding-right: 3px;"></p>
+                </td>
+                <td class="col-8 p-0 m-0">
+                    <input type="submit" value="Đăng ký " id="submit">
+                    <input type="button" value="Hủy">
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

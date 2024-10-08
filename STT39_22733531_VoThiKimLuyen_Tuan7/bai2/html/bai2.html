@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../Bootstrap/css/bootstrap.min.css">
+    <script src="../Bootstrap/js/jquery-3.6.0.min.js"></script>
+    <script src="../Bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        * {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+        }
+        
+        .container {
+            width: 50%;
+            margin: auto;
+            border: 1px solid black;
+        }
+        
+        .col-4 img {
+            width: 50%;
+        }
+        
+        #k1 {
+            height: 200px;
+            background-image: url(..//images/Screenshot\ 2024-03-29\ 065630.png);
+            background-size: cover;
+        }
+        
+        #t1 {
+            border: 3px solid white;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+
+                function ktrarong(giatri, text) {
+                    var regex = giatri.trim();
+                    if (regex == "") {
+                     text.innerHTML="Không được để trống";
+                        return false;
+                    } else {
+                        text.innerHTML="";
+                        return true;
+                    }
+                }
+
+                function ktra(giatri, text) {
+                    let regex = /^[0-9]+$/;
+                    if (!regex.test(giatri)) {
+                        $(text).html("Giá trị phải là số!!!");
+                return false;
+                    } else {
+                        $(text).html("");
+                        return true;
+                    }
+                }
+
+                $("#muavao").blur(function(e) {
+                    let valmua = $("#muavao").val();
+                    if (!ktrarong(valmua, mua)) {
+                        return;
+                    }
+                    ktra(valmua, "#mua");
+                });
+
+                $("#banra").blur(function(e) {
+                    let valban = $(this).val();
+                    if (!ktrarong(valban, ban)) {
+                    return;
+                    }
+                    ktra(valban, "#ban");
+                });
+
+            $("#updatebtn").click(function() {
+                var txtmv = document.getElementById("muavao").value;
+                var txtbr = document.getElementById("banra").value;
+                var rad = $('[name="tiente"]:radio:checked').val();
+                if (rad == "Vang") {
+                    vangmv.innerHTML = txtmv;
+                    vangbr.innerHTML = txtbr;
+                } else {
+                    usdmv.innerHTML = txtmv;
+                    usdbr.innerHTML = txtbr;
+                }
+            });
+            $("#loaixe").change(function(e) {
+                let xe = $("#loaixe").val();
+                let path, pricar;
+                let vtri = xe.indexOf(";");
+                path = xe.substr(0, vtri);
+                pricar = xe.substr(vtri + 1, xe.length);
+                $("#hinhxe").attr("src", path);
+                $("#gia").html(pricar);
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12" id="k1">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 m-0 p-0">
+                <table class="table table-bordered m-0 ">
+                    <tr class="table-active text-center title ">
+                        <td colspan="2" style="color: blue;">Bảng tin thị trường</td>
+                    </tr>
+                    <tr class="table-active text-primary text-center">
+                        <td colspan="2">Vàng</td>
+                    </tr>
+                    <tr class="text-primary text-center">
+                        <td>Mua vào</td>
+                        <td>Bán ra</td>
+                    </tr>
+                    <tr class="text-center ">
+                        <td id="vangmv" style="height: 40px;"></td>
+                        <td id="vangbr"></td>
+                    </tr>
+                    <tr class="table-active text-primary text-center">
+                        <td colspan="2">USD</td>
+                    </tr>
+                    <tr class=" text-center">
+                        <td id="usdmv" style="height: 40px;"></td>
+                        <td id="usdbr"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-5 m-0 p-0 table-responsive-sm">
+                <table class="table table-secondary table-bordered" id="t1">
+                    <tr class=" text-center title">
+                        <td colspan="2" style="color: blue;">Cập nhật giá cả thị trường</td>
+                    </tr>
+                    <tr>
+                        <td>Mua vào</td>
+                        <td><input type="text" id="muavao"><br><span class="text-danger" id="mua"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Bán ra</td>
+                        <td><input type="text" id="banra"><br><span class="text-danger" id="ban"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Loại xe</td>
+                        <td>
+                            <select name="loaixe" id="loaixe">
+                                <option value="car1.png;35000">Toyota</option>
+                                <option value="../images/car2.png;15000">KIA</option>
+                                <option value="../images/car3.png;40000">Ford</option>
+                                <option value="../images/car4.png;32000">Civic</option>
+                                <option value="../images/car5.png;50000">Ferrari</option>
+                                <option value="../images/car6.png;45000">Mercedes</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="radio" name="tiente" value="Vang" checked="checked" id="Vang">
+                            <label for="tiente">Vàng</label>
+                            <input type="radio" name="tiente" value="USD" id="USD">
+                            <label for="tiente">USD</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button id="updatebtn">Update</button>
+                            <button id="state">State</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-4 m-0 p-0 ">
+                <table class="table table-bordered m-0">
+                    <tr class="table-active text-center title border-2">
+                        <td style="color: blue;">Bảng báo giá</td>
+                    </tr>
+                    <tr class="text-primary">
+                        <td>
+                            <div id="infor">
+                                <p>-với kiểu dáng thể thao, sang trọng</p>
+                                <p>-nổi bật, ít tốn nhiên liệu</p>
+                                <p>-kiểu dáng thể thao</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="table-active text-center">
+                        <td>
+                            <img src="../images/car1.png" alt="Toyota" id="hinhxe">
+
+                        </td>
+                    </tr>
+                    <tr class="text-success">
+                        <td>Giá:
+                            <span id="gia">35000</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
