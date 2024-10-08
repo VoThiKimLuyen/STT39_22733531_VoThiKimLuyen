@@ -1,0 +1,100 @@
+*{
+    margin: 0 auto;
+    padding: 0 auto;
+}
+#div1{
+    height: 950px;
+    width: 900px;
+    border: 1px solid black;
+    background-image: url(background.jpg);
+}
+header{
+    margin-left: 10px;
+    margin-top: 20px;
+    height: 70px;
+    width: 90%;
+}
+nav{
+    float: left;
+    margin-top: 30px;
+    margin-left: 10px;
+    width: 17%;
+    height: 200px;
+    background-color: white;
+    border-right: 2px solid rgb(87, 79, 79);
+    border-bottom: 2px solid rgb(87, 79, 79);
+}
+#div2 li a{
+    margin-left: 10px;
+    text-decoration: none;
+    margin-left: -30px;
+    color: rgb(139, 84, 240);
+}
+#div2 li{
+    list-style-type: none;
+    padding-bottom: 20px;
+}
+section{
+    float: right;
+    margin-right: 10px;
+    margin-top: 30px;
+    width: 79%;
+    height: 755px;
+    border-left: 1px solid  rgb(50, 185, 50);
+}
+#div3{
+    float: right;
+    width: 98%;
+    height: 755px;
+}
+#div3 h1{
+    float: left;
+    background-color: rgb(50, 185, 50);
+    color: white;  
+    width: 66%;
+    height: 30px;  
+    letter-spacing: 7px;
+    padding-left: 50px;
+}
+#p1{
+    padding-top: 50px;
+    color: white;
+}
+p{
+    padding-top: 20px;
+    color: white;
+}
+#hi1{
+    top: 50px;
+    float: right;
+    height: 290px;
+    padding-top: 24px;
+}
+#p2{
+    padding-left: 30px;
+}
+h3{
+    float: left;
+    background-color: rgb(50, 185, 50);
+    color: white;  
+    width: 45%;
+    height: 20px;  
+    margin-top: 20px;
+}
+.ulli{
+    color: white;
+    margin-top: 60px;
+}
+#hr1{
+    margin-top: 5px;
+}
+footer{
+    margin-top: 800px;
+    width: 97.5%;
+    height: 40px;
+    border-top: 1px solid rgb(50, 185, 50);
+    margin-left: 10px;
+}
+#p3{
+    margin-top: -10px;
+}
