@@ -1,0 +1,32 @@
+.logo{
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.button{
+    border-radius: 50px;
+}
+a{
+    text-transform: uppercase;
+}
+img{
+    width: 50%;
+    margin: 20px 0px;
+    margin-left: 50px;
+}
+section{
+    background: linear-gradient(to right, #ff69b4, #87ceeb);
+}
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+footer{
+    background: url('../images/дорога_43.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 200px;
+}
+.footer-h1{
+    color: azure;
+    font-weight: bold;
+}

@@ -1,0 +1,25 @@
+*{
+    font-family: cursive;
+    font-size: 105%;
+}
+h1{
+    font-family: 'Dancing Script';
+}
+
+body{
+    background: url(../images/hero-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+form .btn {
+    border-radius: 50px;
+    color: aliceblue;
+}
+section{
+    color: aliceblue;
+}
+.font-size{
+    font-size: 350%;
+}
+
+

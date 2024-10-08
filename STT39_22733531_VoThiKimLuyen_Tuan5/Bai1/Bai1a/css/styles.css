@@ -1,0 +1,21 @@
+a{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+/* .center {
+    display: flex;
+    align-items: center;
+} */
+body{
+    background-color: rgb(31, 31, 89);
+}
+.title{
+    color:aliceblue;
+    text-align: center;
+    font-size: 80px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+p{
+    color: aliceblue;
+}
