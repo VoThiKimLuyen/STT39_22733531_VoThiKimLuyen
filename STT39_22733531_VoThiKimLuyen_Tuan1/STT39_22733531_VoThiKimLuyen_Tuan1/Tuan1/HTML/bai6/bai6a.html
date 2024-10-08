@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</Form></title>
+    <style>
+        #khung1
+        {
+            height: 700px;
+            width: 600px;
+            margin: auto;
+            background-color: rgba(126, 213, 72, 0.716);
+            padding-top: 5px;
+            padding-left: 40px;
+            padding-right: 40px;
+            
+        }
+        #khung2
+        {
+            margin: auto;
+            width: 200px; 
+            /* height: 60px; */
+            background-color: rgb(182, 240, 11);
+            border-radius: 12px;
+            text-align: center;
+            /* padding: 5px; */
+            background-size: cover;
+            border: 2px solid rgb(51, 54, 38);
+            box-shadow: 7px 7px rgb(103, 151, 22);
+        }
+        #khung4
+        {
+            padding-top: 5px;
+            text-align: center;
+        }
+        #ke1
+        {
+           
+           border: 2px solid rgb(31, 110, 28);
+        }
+        #ke2
+        {
+            border: 2px solid rgb(46, 143, 26);
+        }
+        #chu1
+        {
+            /* size: 20px; */
+            font-family: Arial;
+            font-size: 20px;
+        }
+        #chu2
+        {
+            text-align: center;
+            padding-top: 20px;
+        }
+        #chu3
+        {
+            padding-top: -10px;
+            text-align: center;
+        }
+        #tttad1
+        {
+            width: 200px;
+        }
+        #tttad2
+        {
+            width: 130px;
+        }
+        #tttad3
+        {
+            width: 30px;
+        }
+        #tttad4
+        {
+            width: 40px;
+        }
+        #tttad5
+        {
+            width: 300px;
+            height: 60px;
+        }
+        #tttad6
+        {
+            width: 100px;
+        }
+        #chu4
+        {
+            padding: auto;
+            
+        }
+        #ra1
+        {
+            margin-left: 40px;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="khung1">
+        <div id="khung2">
+            <b id="chu1">Jackson</b>
+            <hr id="ke1">
+            <b id="chu1">Electronics</b>
+
+        </div>
+        <h2 id="chu2">Registration Form</h2>
+        <p id="chu3">Register your Jackson Electronics product here</p>
+        <div id="khung3">
+            <table id="bang1"   width="1200px" >
+                <tr>
+                    <td width="210px">Fist Name:</td>
+                    <td> <input type="text" name="ttt" id="tttad6"> LastName:<input type="text" name="ttt" id="tttad2"></td>
+                </tr>
+                <tr>
+                    <td width="210px">Address#1:</td>
+                    <td><input type="text" name="ttt" id="tttad1"></td>
+                </tr>
+                <tr>
+                    <td width="210px">Address#2:</td>
+                    <td><input type="text" name="ttt" id="tttad1"></td>
+                </tr>
+                <tr>
+                    <td width="210px">City:</td>
+                    <td><input type="text" name="ttt" id="tttad2"> State:<input type="text" name="ttt" id="tttad3">
+                        Zip:<input type="text" name="ttt" id="tttad4"></td>
+                </tr>
+                <tr>
+                    <td width="210px">Country</td>
+                    <td><input type="text" name="ttt" id="tttad2" value="United State"></td>
+                </tr>
+            
+                
+            </table>
+            <hr id="ke2">
+            <table   width="1200px" >
+                <tr>
+                    <td width="210px">Product:</td>
+                    <td >
+                        <select>
+                            <option>Danh sách 01</option>
+                            <option>Danh sách 02</option>
+                            <option>Danh sách 03</option>
+                            <option>Danh sách 03</option>
+                            </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date Purchased</td>
+                    <td><input type="text" name="ttt" id="tttad2"></td>
+                </tr>
+                <tr>
+                    <td>Serial#</td>
+                    <td><input type="text" name="ttt" id="tttad2"></td>
+                </tr>
+                <tr>
+                    <td>Used for:</td>
+                    <td><input type="radio" name="ra" id="" value="abc"><label for="home">Home</label>
+                        <input type="radio" name="ra" id="ra1" value="abc"><label for="Education">Education</label></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="radio" name="ra" id="" value="abc"><label for="home">Business</label>
+                        <input type="radio" name="ra" id="ra1" value="abc"><label for="Education">Other</label></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="radio" name="ra" id="" value="abc"><label for="home">Goverment</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>System (check all that apply):</td>
+                    <td><input type="checkbox" name="cb" id=""><label for="name">Windows</label>
+                        <input type="checkbox" name="cb" id="ra1"><label for="name">UNIX</label>
+                    </td>
+                </tr>
+                    <td></td>
+                    <td><input type="checkbox" name="cb" id=""><label for="name">Macintosh</label>
+                        <input type="checkbox" name="cb" id="ra1"><label for="name">Other</label>
+                    </td>
+
+            </table>
+            <hr id="ke2">
+            <table id="bang2"    width="770px" >
+                <tr>
+                    <td width="210px" id="chu4" >Comments?</td>
+                    <td><input type="text" name="ttt" id="tttad5"></td>
+
+                </tr>
+               
+            </table>
+            <div id="khung4">
+            <button type="button">Click to Register</button>
+            <button type="button">Click to Cancel</button>
+            </div>
+
+
+        </div>
+<!-- <form action="">
+    <input type="button" value="">
+    <input type="checkbox" name="" id="">
+</form> -->
+    </div>
+</body>
+</html>
