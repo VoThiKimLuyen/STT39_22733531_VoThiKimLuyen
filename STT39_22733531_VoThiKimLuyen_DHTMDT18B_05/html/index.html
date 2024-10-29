@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="..//css/bootstrap.min.css">
+    <script src="../js/jquery-3.7.1.min.js">
+    </script>
+
+    <style>
+        [class*=col-] {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: ;
+        }
+        
+        .wrapper {
+            height: 800px;
+            width: 1000px;
+            background-color: aliceblue;
+        }
+        
+        .container {
+            margin-top: 50px;
+        }
+        
+        header {
+            position: relative;
+        }
+        
+        header h1 {
+            position: absolute;
+            top: : 30px;
+            left: 20px;
+        }
+        
+        table {
+            top: 200px;
+        }
+        
+        menu li {
+            height: 30px;
+            width: 50px;
+            float: left;
+            list-style-type: none;
+        }
+        
+        li a {
+            text-decoration: none;
+            list-style-type: none;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="../HEADER.PNG" alt="" style=" width:100%;">
+            <h1 class="text-center">DANH SÁCH THAM GIA ĐỘI RÔCBON KHOA CNTT</h1>
+            <!--Nút mở modal đăng ký-->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">
+                Đăng ký
+            </button>
+            <!--Modal-->
+        </header>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Mã thành viên</th>
+                    <th>Họ tên</th>
+                    <th>Lớp</th>
+                    <th>Ngày tham gia</th>
+                    <th>Điện thoại</th>
+                    <th>Email</th>
+                    <tr></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>K16-123456789</td>
+                    <td>Tran Thanh Kha</td>
+                    <td>DHKTPM16ATT</td>
+                    <td>22/02/2022</td>
+                    <td>0909-123-123</td>
+                    <td>thanhkha@iuh.edu.vn</td>
+                </tr>
+            </tbody>
+        </table>
+        <nav>
+
+        </nav>
+
+    </div>
+</body>
+
+</html>
