@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <title>baitaptuan8</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .header {
+            height: 65vh;
+        }
+
+        li {
+            cursor: pointer;
+        }
+
+        #modal {
+            height: fit-content;
+            width: 45vw;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        span {
+            color: red;
+            font-size: 14px;
+        }
+        @media only screen and (max-width: 700px) {
+            #modal{
+                width: 100vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header overflow-hidden d-flex align-items-center">
+        <img src="..//img/ảnh.jpg" alt style="width: 100%; background-size: contain;" class="img-fluid">
+    </div>
+    <ul class="nav p-3">
+        <li class="nav-item nav-link">Trang chủ</li>
+        <li class="nav-item nav-link" id="open">Đăng ký</li>
+        <li class="nav-item nav-link">Trợ giúp</li>
+    </ul>
+    <table class="table table-bordered" id="table">
+        <thead>
+            <td><b>STT</b></td>
+            <td><b>Mã học viên</b></td>
+            <td><b>Họ tên</b></td>
+            <td><b>Email</b></td>
+            <td><b>Tiền dịch vụ</b></td>
+            <td><b>Tiền đồ dùng</b></td>
+            <td><b>Tổng tiền</b></td>
+            <tr>
+                <td>1</td>
+                <td>123456789</td>
+                <td>Võ Thị Kim Luyến</td>
+                <td>kimluyen@iuh.edu.vn</td>
+                <td>30000</td>
+                <td>10000</td>
+                <td>40000</td>
+            </tr>
+        </thead>
+    </table>
+   
+    <!-- modal -->
+    <div class="modal p-3 bg-white shadow-lg" id="modal">
+        <div class="modal-header">
+            <div class="modal-title">THÔNG TIN THANH TOÁN</div>
+            <div class="btn btn-close" id="close"></div>
+        </div>
+        <div class="modal-content p-2" style="row-gap: 10px;">
+            <div class="row">
+                <label for="" class="col-3">Mã học viên</label>
+                <div class="col-6">
+                    <input type="text" id="id" class="form-control" placeholder="123456789">
+                </div>
+                <span id="er-id" class="col-3">*</span>
+            </div>
+            <div class="row">
+                <label for="" class="col-3">Họ tên</label>
+                <div class="col-6">
+                    <input type="text" id="name" class="form-control" placeholder="Tran Thu Trang">
+                </div>
+                <span id="er-name" class="col-3">*</span>
+            </div>
+            <div class="row">
+                <label for="" class="col-3">Email</label>
+                <div class="col-6">
+                    <input type="text" id="email" class="form-control" placeholder="thutrang@iuh.edu.vn">
+                </div>
+                <span id="er-email" class="col-3">*</span>
+            </div>
+            <div class="row">
+                <label for="" class="col-3">Dịch vụ</label>
+                <div class="col-6">
+                    <select name="" id="dvu" class="form-select">
+                             <option value="1">Bơi</option>
+                            <option value="2">Trượt ván</option>
+                            <option value="3">Moto nước</option>
+                           
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <label for="" class="col-3">Giá tiền</label>
+                <div class="col-6">
+                    <input type="text" value="50000" id="pDvu" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <label for="" class="col-3">Đồ dùng</label>
+                <div class="col-6">
+                    <div>
+                        <input type="checkbox" id="ck1"> Áo quần bơi
+                    </div>
+                    <div>
+                        <input type="checkbox" id="ck2"> Phao
+                    </div>
+                    <div>
+                        <input type="checkbox" id="ck3"> Kính bơi
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label for="" class="col-3">Tiền đồ dùng</label>
+                <div class="col-6">
+                    <input type="text" id="pDdung" value="0" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <label for="" class="col-3">Tổng tiền</label>
+                <div class="col-6">
+                    <input type="text" id="totalPrice" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn btn-success col-6" id="submit">Thanh toán</button>
+                <button class="btn btn-danger col-6" id="close1">Hủy</button>
+            </div>
+            <div class="modal-footer" >
+                <h5>Trang thanh toán</h5>
+            </div>
+        </div>
+       
+    </div>
+    <div class="row">
+        <div class="col-4 col-md-4">
+            <h6>Mã sinh viên:_________</h6>
+        </div>
+        <div class="col-4 col-md-4">
+            <h6> Họ tên:__________</h6>
+        </div>
+        <div class="col-4 col-md-4">
+            <h6> phòng thi:__________</h6>
+        </div>
+    </div>
+</body>
+<script>
+    //open and close modal
+    var modal = document.getElementById("modal");
+    const open = document.getElementById("open");
+    const close = document.getElementById("close");
+    const close1 = document.getElementById("close1");
+    open.addEventListener("click", function () {
+        modal.style.display = "block";
+        changePriceDoDung();
+        changeTotalPrice();
+
+    })
+    close.addEventListener("click", function () {
+        modal.style.display = "none";
+    })
+    close1.addEventListener("click", function () {
+        modal.style.display = "none";
+    })
+    //thay doi gia dich vu
+    var dichVu = document.getElementById("dvu");
+    var pDichVu = document.getElementById("pDvu");
+    dichVu.addEventListener("change", function () {
+        let total = 0;
+        switch (dichVu.value) {
+            case "1":
+                total = 20000;
+                break;
+            case "2":
+                total = 20000;
+                break;
+            case "3":
+                total = 50000;
+                break;
+            case "4":
+                total = 50000;
+                break;
+        }
+        pDichVu.value = total;
+        changeTotalPrice();
+    })
+
+    var ck1 = document.getElementById("ck1");
+    var ck2 = document.getElementById("ck2");
+    var ck3 = document.getElementById("ck3");
+    var pDoDung = document.getElementById("pDdung");
+    ck1.addEventListener("change", changePriceDoDung);
+    ck2.addEventListener("change", changePriceDoDung);
+    ck3.addEventListener("change", changePriceDoDung);
+    function changePriceDoDung() {
+        let total = 0;
+        if (ck1.checked)
+            total += 20000;
+        if (ck2.checked)
+            total += 30000;
+        if (ck3.checked)
+            total += 40000;
+        pDoDung.value = total;
+        changeTotalPrice();
+
+    }
+
+    //tinh Tong
+    var totalPrice = document.getElementById("totalPrice");
+    totalPrice.addEventListener("change", changeTotalPrice);
+    function changeTotalPrice() {
+        totalPrice.value = Number(pDichVu.value) + Number(pDoDung.value);
+    }
+    changeTotalPrice();
+    //submit form
+    var stt = 0;
+    var submit = document.getElementById("submit");
+    var table = document.getElementById("table");
+    submit.addEventListener("click", function () {
+        var id = document.getElementById("id").value;
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var erId = document.getElementById("er-id");
+        var erName = document.getElementById("er-name");
+        var erEmail = document.getElementById("er-email");
+
+        var regId = /[0-9]{9}$/;
+        var regName = /(^[A-Z]{1}[a-z]+)(\s[A-Z]{1}[a-z]*)+$/;
+        var regEmail = /^[\w-\.]+@iuh.edu.vn/g;
+
+        if (id === "" || name === "" || email === "" || !(regId).test(id) || !(regName).test(name) || !(regEmail).test(email)) {
+            alert("Nhập đầy đủ thông tin hoặc Xem lại thông tin  nhập!!!");
+            if (id === "")
+                erId.innerText = "Hãy nhập mã !!";
+            else if (!(regId).test(id))
+                erId.innerText = "Mã sai định dạng !!";
+            else
+                erId.innerText = "";
+            if (name === "")
+                erName.innerText = "Hãy nhập tên !!";
+            else if (!(regName).test(name))
+                erName.innerText = "Tên sai định dạng !!";
+            else
+                erName.innerText = "";
+            if (email === "")
+                erEmail.innerText = "Hãy nhập ẹmail !!";
+            else if (!(regEmail).test(email))
+                erEmail.innerText = "Email sai định dạng !!";
+            else
+                erEmail.innerText = "";
+        }
+        else {
+            stt++;
+            let html = `
+            <tr>
+                <td>${stt}</td>
+                <td>${id}</td>
+                <td>${name}</td>
+                <td>${email}</td>
+                <td>${pDichVu.value}</td>
+                <td>${pDoDung.value}</td>
+                <td>${totalPrice.value}</td>
+                </tr>
+        `;
+            let row = table.insertRow();
+            row.innerHTML = html;
+            modal.style.display = "none";
+            resetForm();
+        }
+    })
+    const resetForm = () => {
+        document.getElementById("id").value = "";
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("er-id").innerText = "*";
+        document.getElementById("er-name").innerText = "*";
+        document.getElementById("er-email").innerText= "*";
+        ck1.checked = false;
+        ck2.checked = false;
+        ck3.checked = false;
+    }
+   
+
+</script>
+</html>
