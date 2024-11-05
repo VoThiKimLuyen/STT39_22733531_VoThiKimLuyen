@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Document </title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+    <style>
+        .mauDo {
+            font-size: 100%;
+            color: red;
+        }
+
+        .mauXanh {
+            font-size: 100%;
+            color: green;
+        }
+
+        [class*="col-"] {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        li {
+            width: 150px;
+        }
+
+        #form1 {
+            height: 600px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            var i = 2;
+        
+            $("#btnDK").click(function () {
+                $("#myModal").modal();
+            });
+     
+            function kiemTraMa() {
+                var mauKT = /^[0-9]{9}$/; 
+                var maValue = $("#txtMa").val();
+                if (maValue == "") {
+                    $("#tbMa").html("Bắt buộc nhập");
+                    $("#tbMa").addClass("mauDo");
+                    $("#tbMa").removeClass("mauXanh");
+                    return false;
+                } else if (!mauKT.test(maValue)) {
+                    $("#tbMa").html("Nhập sai");
+                    $("#tbMa").addClass("mauDo");
+                    $("#tbMa").removeClass("mauXanh");
+                    return false;
+                } else {
+                    $("#tbMa").html("Nhập đúng");
+                    $("#tbMa").addClass("mauXanh");
+                    $("#tbMa").removeClass("mauDo");
+                    return true;
+                }
+            }
+
+            function kiemTraHT() {
+                var regex = /^[A-Z][a-z]*(\s[A-Z][a-z]*)+$/;
+                var hoten = $("#txtHT").val();
+                if (hoten == "") {
+                    $("#tbTen").html("Bắt buộc nhập");
+                    $("#tbTen").addClass("mauDo");
+                    $("#tbTen").removeClass("mauXanh");
+                    return false;
+                } else if (!regex.test(hoten)) {
+                    $("#tbTen").html("Nhập sai (Ví dụ: Tran Thanh Hung)");
+                    $("#tbTen").addClass("mauDo");
+                    $("#tbTen").removeClass("mauXanh");
+                    return false;
+                } else {
+                    $("#tbTen").html("Nhập đúng");
+                    $("#tbTen").addClass("mauXanh");
+                    $("#tbTen").removeClass("mauDo");
+                    return true;
+                }
+            }
+
+            function kiemTraDate() {
+                var ngayVao = new Date($("#txtDate").val());
+                var today = new Date();
+                var eighteenYearsAgo = new Date(today.setFullYear(today.getFullYear() - 18));
+                if ($("#txtDate").val() == "") {
+                    $("#tbDate").html("Bắt buộc nhập");
+                    $("#tbDate").addClass("mauDo");
+                    $("#tbDate").removeClass("mauXanh");
+                    return false;
+                } else if (ngayVao > eighteenYearsAgo) {
+                    $("#tbDate").html("Ngày vào công ty phải trước 18 năm");
+                    $("#tbDate").addClass("mauDo");
+                    $("#tbDate").removeClass("mauXanh");
+                    return false;
+                } else {
+                    $("#tbDate").html("Nhập đúng");
+                    $("#tbDate").addClass("mauXanh");
+                    $("#tbDate").removeClass("mauDo");
+                    return true;
+                }
+            }
+
+            $("#txtBacLuong").change(function () {
+                var bacLuong = $(this).val();
+                var heSoLuong = 0;
+
+                switch (bacLuong) {
+                    case "Bậc 1":
+                        heSoLuong = 1.86;
+                        break;
+                    case "Bậc 2":
+                        heSoLuong = 2.10;
+                        break;
+                    case "Bậc 3":
+                        heSoLuong = 2.50;
+                        break;
+                    default:
+                        heSoLuong = 0;
+                }
+                $("#txtHeSoLuong").val(heSoLuong);
+            });
+
+            $("#btnSave").click(function () {
+                if (kiemTraMa() && kiemTraHT() && kiemTraDate()) {
+                    var ma = $("#txtMa").val();
+                    var ht = $("#txtHT").val();
+                    var date = $("#txtDate").val();
+                    var cv = $("#txtCV").val();
+                    var bacLuong = $("#txtBacLuong").val();
+                    var heSoLuong = $("#txtHeSoLuong").val();
+
+                    var them = `
+                    <tr>
+                        <td>` + (i++) + `</td>
+                        <td>` + ma + `</td>
+                        <td>` + ht + `</td>
+                        <td>` + date + `</td>
+                        <td>` + cv + `</td>
+                        <td>` + heSoLuong + `</td>
+                    </tr>
+                    `;
+                    $("#tbDanhSach").append(them);
+                    $("#myModal").modal("hide");
+                    return true;
+                } else {
+                    alert("Vui lòng kiểm tra lại các thông tin.");
+                    return false;
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container border">
+        <div class="row bg-primary">
+            <h1 class="mx-auto text-light text-center">DANH SÁCH LƯƠNG NHÂN VIÊN</h1>
+        </div>
+        <div class="row">
+            <div class="navbar">
+                <ul class="nav">
+                    <li class="nav-item"> <a href="#" class="nav-link">Trang chủ</a></li>
+                    <li class="nav-item"> <a href="#" class="nav-link">Thông tin</a></li>
+                    <li class="nav-item"> <a href="#" class="nav-link" id="btnDK" data-bs-toggle="modal" data-bs-target="#myModal">Cập nhật lương</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-bordered table-hover" id="tbDanhSach">
+                <tr class="table-primary">
+                    <th> STT </th>
+                    <th> Mã nhân sự </th>
+                    <th> Họ tên </th>
+                    <th> Ngày hợp đồng </th>
+                    <th> Chức vụ </th>
+                    <th> Bậc lương </th>
+                </tr>
+                <tr>
+                    <td> 1 </td>
+                    <td> 912345678 </td>
+                    <td> Hoàng Minh Vương </td>
+                    <td> 12/5/2000 </td>
+                    <td> Nhân viên </td>
+                    <td> 1.86 </td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <div class=" col-12  text-center ">
+                <h4 class="bg-info"> 22733531: Võ Thị Kim Luyến </h4>
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5>THÔNG TIN NHÂN VIÊN</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" class="form-control" id="form1">
+                            <div class="row form-group p-1">
+                                <div class="col-3">
+                                    <label for="txtMa">Mã nhân viên:</label>
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" class="form-control" id="txtMa" placeholder="Mã nhân sự">
+                                </div>
+                                <div class="col-3 p-2">
+                                    <span id="tbMa">(*)</span>
+                                </div>
+                            </div>
+                            <div class="row form-group p-1">
+                                <div class="col-3">
+                                    <label for="
+                                    <label for="txtHT">Tên nhân viên:</label>
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" class="form-control" id="txtHT" placeholder="Họ tên">
+                                </div>
+                                <div class="col-3 p-2">
+                                    <span id="tbTen">(*)</span>
+                                </div>
+                            </div>
+                            <div class="row form-group p-1">
+                                <div class="col-3">
+                                    <label for="txtDate">Ngày vào công ty:</label>
+                                </div>
+                                <div class="col-6">
+                                    <input type="date" class="form-control" id="txtDate" placeholder="mm/dd/yyyy">
+                                </div>
+                                <div class="col-3 p-2">
+                                    <span id="tbDate">(*)</span>
+                                </div>
+                            </div>
+                            <div class="row form-group p-1">
+                                <div class="col-3">
+                                    <label for="txtCV">Chức vụ:</label>
+                                </div>
+                                <div class="col-6">
+                                    <select id="txtCV" class="form-control">
+                                        <option value="Cán bộ quản lý">Cán bộ quản lý</option>
+                                        <option value="Nhân viên"> Nhân viên</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row form-group p-1">
+                                <div class="col-3">
+                                    <label for="txtBacLuong">Bậc lương:</label>
+                                </div>
+                                <div class="col-6">
+                                    <select id="txtBacLuong" class="form-control">
+                                        <option value="Bậc 1">Bậc 1</option>
+                                        <option value="Bậc 2">Bậc 2</option>
+                                        <option value="Bậc 3">Bậc 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row form-group p-1">
+                                <div class="col-3">
+                                    <label for="txtHeSoLuong">Hệ số lương:</label>
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" class="form-control" id="txtHeSoLuong" readonly>
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-sm-6">
+                                    <input type="button" value="Thêm" id="btnSave" class="btn btn-info btn-block">
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-sm-6">
+                                    <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal"> Close </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
